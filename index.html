@@ -1,0 +1,348 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0"
+		/>
+		<title>ImageSlicer - Cut Images to Length</title>
+		<!-- External Stylesheets -->
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+		/>
+		<link
+			rel="stylesheet"
+			href="styles.css"
+		/>
+	</head>
+	<body>
+		<!-- Header Section -->
+		<header>
+			<div class="logo">
+				<svg
+					width="24"
+					height="24"
+					viewBox="0 0 24 24"
+					fill="none"
+					stroke="currentColor"
+					stroke-width="2"
+					stroke-linecap="round"
+					stroke-linejoin="round"
+				>
+					<rect
+						x="3"
+						y="3"
+						width="18"
+						height="18"
+						rx="2"
+						ry="2"
+					></rect>
+					<line
+						x1="12"
+						y1="3"
+						x2="12"
+						y2="21"
+					></line>
+					<line
+						x1="3"
+						y1="9"
+						x2="21"
+						y2="9"
+					></line>
+					<line
+						x1="3"
+						y1="15"
+						x2="21"
+						y2="15"
+					></line>
+				</svg>
+				ImageSlicer
+			</div>
+		</header>
+		<!-- End Header Section -->
+
+		<!-- Main Content Area -->
+		<main>
+			<div class="app-container">
+				<!-- Upload Section -->
+				<div class="upload-section">
+					<h2>Upload Images</h2>
+					<!-- Upload Box -->
+					<div
+						class="upload-box"
+						id="uploadBox"
+					>
+						<svg
+							width="48"
+							height="48"
+							viewBox="0 0 24 24"
+							fill="none"
+							stroke="currentColor"
+							stroke-width="2"
+							stroke-linecap="round"
+							stroke-linejoin="round"
+						>
+							<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+							<polyline points="17 8 12 3 7 8"></polyline>
+							<line
+								x1="12"
+								y1="3"
+								x2="12"
+								y2="15"
+							></line>
+						</svg>
+						<p>Drag & drop your images here<br />or <strong>click to browse</strong></p>
+						<p class="small">Supports: JPG, PNG, GIF, BMP</p>
+						<input
+							type="file"
+							id="fileInput"
+							accept="image/*"
+							multiple
+							style="display: none"
+						/>
+					</div>
+					<!-- End Upload Box -->
+
+					<!-- File List Display -->
+					<div
+						class="file-list"
+						id="fileList"
+					></div>
+					<!-- End File List Display -->
+
+					<!-- Slice Height Controls -->
+					<div class="slider-container">
+						<div class="slider-header">
+							<label for="sliceHeight">Slice Height (px)</label>
+							<div class="slider-input-group">
+								<input
+									type="number"
+									id="heightInput"
+									min="100"
+									max="5000"
+									value="800"
+									step="100"
+								/>
+							</div>
+						</div>
+						<div class="slider-wrapper">
+							<input
+								type="range"
+								id="heightSlider"
+								min="100"
+								max="2000"
+								value="800"
+								step="100"
+							/>
+						</div>
+					</div>
+					<!-- End Slice Height Controls -->
+
+					<!-- Processing Mode Option -->
+					<div class="compression-option">
+						<div class="compression-title">Processing Mode</div>
+						<div class="radio-group">
+							<div class="radio-item">
+								<input
+									type="radio"
+									id="modeSlice"
+									name="processMode"
+									value="slice"
+									checked
+								/>
+								<label for="modeSlice">Slice Image</label>
+							</div>
+							<div class="radio-item">
+								<input
+									type="radio"
+									id="modeExtract"
+									name="processMode"
+									value="extract"
+								/>
+								<label for="modeExtract">Extract Top Section</label>
+							</div>
+						</div>
+					</div>
+					<!-- End Processing Mode Option -->
+
+					<!-- Output Format Option -->
+					<div class="compression-option">
+						<div class="compression-title">Output Format</div>
+						<div class="radio-group">
+							<div class="radio-item">
+								<input
+									type="radio"
+									id="formatWebp"
+									name="outputFormat"
+									value="webp"
+									checked
+								/>
+								<label for="formatWebp">WebP</label>
+							</div>
+							<div class="radio-item">
+								<input
+									type="radio"
+									id="formatPng"
+									name="outputFormat"
+									value="png"
+								/>
+								<label for="formatPng">PNG</label>
+							</div>
+							<div class="radio-item">
+								<input
+									type="radio"
+									id="formatJpg"
+									name="outputFormat"
+									value="jpeg"
+								/>
+								<label for="formatJpg">JPG</label>
+							</div>
+						</div>
+					</div>
+					<!-- End Output Format Option -->
+
+					<!-- Compression Quality Option -->
+					<div class="compression-option">
+						<div class="compression-title">Compression Quality</div>
+						<div class="radio-group">
+							<div class="radio-item">
+								<input
+									type="radio"
+									id="compLossless"
+									name="compression"
+									value="lossless"
+									checked
+								/>
+								<label for="compLossless">Lossless</label>
+							</div>
+							<div class="radio-item">
+								<input
+									type="radio"
+									id="compHigh"
+									name="compression"
+									value="high"
+								/>
+								<label for="compHigh">High Quality</label>
+							</div>
+							<div class="radio-item">
+								<input
+									type="radio"
+									id="compMedium"
+									name="compression"
+									value="medium"
+								/>
+								<label for="compMedium">Medium Quality</label>
+							</div>
+							<div class="radio-item">
+								<input
+									type="radio"
+									id="compLow"
+									name="compression"
+									value="low"
+								/>
+								<label for="compLow">Low Quality</label>
+							</div>
+						</div>
+					</div>
+					<!-- End Compression Quality Option -->
+
+					<!-- Output Location Option -->
+					<!-- TODO: Add a dropdown or radio buttons for output location later -->
+					<!-- End Output Location Option -->
+
+					<!-- Process Button -->
+					<button
+						id="processBtn"
+						class="btn-primary"
+					>
+						Process Images
+					</button>
+					<!-- End Process Button -->
+				</div>
+				<!-- End Upload Section -->
+
+				<!-- Preview Section -->
+				<div class="preview-section">
+					<h2>Preview</h2>
+					<!-- Preview Container -->
+					<div
+						class="preview-container"
+						id="previewContainer"
+					>
+						<div class="preview-placeholder">
+							<svg
+								width="64"
+								height="64"
+								viewBox="0 0 24 24"
+								fill="none"
+								stroke="currentColor"
+								stroke-width="1.5"
+								stroke-linecap="round"
+								stroke-linejoin="round"
+							>
+								<rect
+									x="3"
+									y="3"
+									width="18"
+									height="18"
+									rx="2"
+									ry="2"
+								></rect>
+								<circle
+									cx="8.5"
+									cy="8.5"
+									r="1.5"
+								></circle>
+								<polyline points="21 15 16 10 5 21"></polyline>
+							</svg>
+							<p>Upload an image to see the preview</p>
+						</div>
+					</div>
+					<!-- End Preview Container -->
+
+					<!-- Action Buttons for Download -->
+					<div class="action-buttons">
+						<button
+							id="downloadAllBtn"
+							class="btn-primary"
+							disabled
+						>
+							Download All Slices
+						</button>
+						<button
+							id="downloadZipBtn"
+							class="btn-outline"
+							disabled
+						>
+							Download as ZIP
+						</button>
+					</div>
+					<!-- End Action Buttons for Download -->
+				</div>
+				<!-- End Preview Section -->
+			</div>
+		</main>
+		<!-- End Main Content Area -->
+
+		<!-- Footer Section -->
+		<div class="footer">© 2025 ImageSlicer - Simple Image Slicing Tool by Aizat</div>
+		<!-- End Footer Section -->
+
+		<!-- Loading Overlay -->
+		<div
+			class="loading"
+			id="loadingOverlay"
+		>
+			<div class="loading-spinner"></div>
+		</div>
+		<!-- End Loading Overlay -->
+
+		<!-- External JavaScript Libraries -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.7.1/jszip.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+		<!-- Custom Script -->
+		<script src="script.js"></script>
+	</body>
+</html>
