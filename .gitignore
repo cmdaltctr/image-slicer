@@ -1,0 +1,47 @@
+# OS generated files #
+######################
+.DS_Store
+Thumbs.db
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Desktop.ini
+
+# Editor and IDE generated files #
+##################################
+.vscode/       # VS Code settings
+*.suo           # Visual Studio solution user options
+*.user          # Visual Studio user-specific files
+*.bak           # Backup files (generic)
+
+# JetBrains IDEs #
+##################
+.idea/          # Project-specific settings
+*.iml           # IntelliJ IDEA module files
+out/           # Directory for compiled class files
+*.ipr           # IntelliJ IDEA project file (older format)
+*.iws           # IntelliJ IDEA workspace file (older format)
+
+# Log files #
+#############
+*.log
+npm-debug.log*
+yarn-debug.log*
+
+# Dependency directories (if use a package manager for dev dependencies) #
+###########################################################################
+node_modules/ # Exclude all npm/yarn dependencies (even if have some for testing)
+
+# Test/Example files #
+######################
+test/results/       # Test output files (if use a testing framework)
+example/build/      # If you have a build process for an example page
+*.tmp               # Temporary files created during testing
+
+# Distribution Files #
+######################
+dist/             # All built/bundled code for distribution
+
+# Sensitive Files
+#################
+*.env             # Exclude environment variable files
